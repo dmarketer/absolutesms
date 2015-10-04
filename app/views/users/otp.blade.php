@@ -39,7 +39,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Enter Verification Code</h3>
+                        <h3 class="panel-title" id="heading">Enter Verification Code</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="otp" method="post">
@@ -87,7 +87,15 @@
                     url : "otp/resend",
                     data : dataString,
                     success : function(data){
-                        console.log(data);
+                      // alert(data)
+					   if(data==1)
+					   {
+						 alert('OTP sent successfully')
+					   }
+					   else
+					   {
+						    alert("Due to Some network problem OTP is not sent")
+					   }
                     }
                 },"json");
 				

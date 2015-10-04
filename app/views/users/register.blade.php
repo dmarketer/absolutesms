@@ -45,21 +45,27 @@
                         <form role="form" action="register" method="post">
                             <fieldset>
 							      <div class="form-group">
-                                    <input class="form-control" placeholder="Name" name="name"  autofocus>
+								  <?php echo $errors->first('name'); ?>
+                                    <input class="form-control" placeholder="Name" name="name"   autofocus value="{{Input::get('name')}}" >
                                 </div>
 								<div class="form-group">
+								<?php echo $errors->first('user_name'); ?>
                                     <input class="form-control" placeholder="Username" name="user_name"  autofocus>
                                 </div>
 								<div class="form-group">
+								<?php  echo $errors->first('password'); ?>
                                     <input class="form-control" placeholder="Password" name="password"  type="password" autofocus>
                                 </div>
 								<div class="form-group">
+								<?php echo $errors->first('cfm_password'); ?>
                                     <input class="form-control" placeholder="Confirm Password" name="cfm_password"  type="password" autofocus>
                                 </div>
                                 <div class="form-group">
+								     <?php echo $errors->first('mobile'); ?>
                                     <input class="form-control" placeholder="Mobile" name="mobile"  autofocus>
                                 </div>
                                 <div class="form-group">
+								      <?php echo $errors->first('email'); ?>
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" >
                                 </div>
 								
