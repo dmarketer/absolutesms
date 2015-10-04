@@ -1,9 +1,9 @@
 <?php
+
 class SmsController extends \BaseController {
 
-    public function sendsms()
-    {
-        dd(Session::get('user_id'));
-        echo 'hi';
+    public function sendsms() {
+        return \View::make('sms.sendsms');
     }
+
 }
