@@ -46,27 +46,27 @@
                             <fieldset>
 							      <div class="form-group">
 								  <?php echo $errors->first('name'); ?>
-                                    <input class="form-control" placeholder="Name" name="name"   autofocus value="{{Input::get('name')}}" >
+                                    <input class="form-control" placeholder="Name" name="name"   autofocus value={{Input::old('name')}} >
                                 </div>
 								<div class="form-group">
 								<?php echo $errors->first('user_name'); ?>
-                                    <input class="form-control" placeholder="Username" name="user_name"  autofocus>
+                                    <input class="form-control" placeholder="Username" name="user_name"  value="{{Input::old('user_name')}}" autofocus>
                                 </div>
 								<div class="form-group">
 								<?php  echo $errors->first('password'); ?>
-                                    <input class="form-control" placeholder="Password" name="password"  type="password" autofocus>
+                                    <input class="form-control" placeholder="Password" name="password"  value="{{Input::old('password')}}"  type="password" autofocus>
                                 </div>
 								<div class="form-group">
 								<?php echo $errors->first('cfm_password'); ?>
-                                    <input class="form-control" placeholder="Confirm Password" name="cfm_password"  type="password" autofocus>
+                                    <input class="form-control" placeholder="Confirm Password" name="cfm_password"  value="{{Input::old('cfm_password')}}"  type="password" autofocus>
                                 </div>
                                 <div class="form-group">
 								     <?php echo $errors->first('mobile'); ?>
-                                    <input class="form-control" placeholder="Mobile" name="mobile"  autofocus>
+                                    <input class="form-control" placeholder="Mobile" name="mobile" value="{{Input::old('mobile')}}"  autofocus>
                                 </div>
                                 <div class="form-group">
 								      <?php echo $errors->first('email'); ?>
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" >
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" value="{{Input::old('email')}}" >
                                 </div>
 								
                                
