@@ -94,7 +94,11 @@ class UserController extends \BaseController {
                 // redirect them to the secure section or whatever
                 // return Redirect::to('secure');
                 // for now we'll just echo success (even though echoing in a controller is bad)
-                echo 'SUCCESS!';
+                $userInfo = User::where('user_name', $userdata['user_name'])->get()->toArray();
+                Session::put('user_id', $userInfo[0]['user_id']);
+                Session::put('user_name', $userInfo[0]['user_name']);
+                Session::put('email', $userInfo[0]['email']);
+                return Redirect::to('sendsms');
             } else {
 
                 // validation not successful, send back to form 

@@ -11,12 +11,9 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/sendsms', array('uses' => 'SmsController@sendSMS'));
 //route to show login form
-Route::get('/login', array('uses' => 'UserController@showLogin'));
+Route::get('/', array('uses' => 'UserController@showLogin'));
 //route to checking login form
 Route::post('login', array('uses' => 'UserController@doLogin'));
 
