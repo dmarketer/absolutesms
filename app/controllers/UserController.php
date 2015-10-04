@@ -85,6 +85,7 @@ class UserController extends \BaseController {
             $userdata = array(
                 'user_name' => Input::get('username'),
                 'password' => Input::get('password')
+
             );
             //dd(Auth::check($userdata));
             // attempt to do the login
@@ -170,7 +171,14 @@ class UserController extends \BaseController {
             $use = DB::table('users')->where('user_id', $uid)->update(array('status' => 'ACTIVE', 'activated_at' => date('Y-m-d H:i:s')));
             $otp = DB::table('users')->where('user_id', $uid)->first();
             $otp_up = DB::table('otp')->where('id', $otp->otp_id)->update(array('verified_date' => date('Y-m-d H:i:s')));
-            return Redirect::to('login');
+          //if user is changing number from acount info         
+		 if (Session::has('user_id'))
+		  {
+			   return Redirect::to('userinfo');
+		  }
+		  else{
+		  return Redirect::to('login');
+		  }
         } else {
             $msg = 'Please Enter Correct OTP';
             return Redirect::to('otp')->with('msg', $msg)->with('id', $uid)->with('mobile', $mob);
@@ -219,7 +227,46 @@ class UserController extends \BaseController {
             echo "0";
         }
     }
+	public function userinfo() 
+	{	
+	    $userId=Session::get('user_id');
+		$users = DB::table('users')->where('user_id', $userId)->first();
+      
+        return View::make('users.userinfo')->with('users',$users);
+    }
+	public function updateuser()
+	{
+		$userId=Session::get('user_id');
+        $name = Input::get('name');
+        $mobile = Input::get('mobile');
+        $email = Input::get('email');
+        $company = Input::get('company');
+		$address = Input::get('address');
+		$users=DB::table('users')->where('user_id', $userId)->first();
+		$oldMob=$users->mobile;
+       $updateInfo = DB::table('users')->where('user_id', $userId)->update(array('company_name' => $company,'first_name'=>$name,'mobile'=>$mobile,'email'=>$email,'address'=>$address));
+	   if($updateInfo)
+	   {
+		   $userUp=DB::table('users')->where('user_id', $userId)->first();
+		   $newMob=$userUp->mobile;
+		   if($oldMob==$newMob)
+		   {
+		   return Redirect::to('userinfo')->withInput()->with('success', 'Updated Successfully.');
+		   }
+		   else
+		   {
+			   $this->sendOtp($mobile, $userId);
+			    return Redirect::to('otp')->with('id', $userId)->with('mobile', $mobile);
+		   }
 
+	   }
+	  
+	}
+	
+	public function changePassword()
+	{
+		 return View::make('users.changepwd');
+	}
     /**
      * Remove the specified resource from storage.
      *

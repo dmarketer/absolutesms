@@ -13,7 +13,7 @@
 
 Route::get('/sendsms', array('uses' => 'SmsController@sendSMS'));
 //route to show login form
-Route::get('/', array('uses' => 'UserController@showLogin'));
+Route::get('login', array('uses' => 'UserController@showLogin'));
 //route to checking login form
 Route::post('login', array('uses' => 'UserController@doLogin'));
 
@@ -25,3 +25,6 @@ Route::post('register', array('uses' => 'UserController@createRegister'));
 Route::get('otp', array('as'=>'show-otp', 'uses' => 'UserController@showOtpForm'));
 Route::post('otp', array('as'=>'verify-otp', 'uses' => 'UserController@verifyotp'));
 Route::post('otp/resend',array('uses'=>'UserController@resendotp'));
+Route::get('userinfo',array('uses'=>'UserController@userinfo'));
+Route::post('userinfo',array('uses'=>'UserController@updateuser'));
+Route::get('/changepwd',array('uses'=>'UserController@changePassword'));
