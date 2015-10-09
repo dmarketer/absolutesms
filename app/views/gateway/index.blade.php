@@ -51,17 +51,19 @@
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                 <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('gateway/' . $value->id) }}">Show this Nerd</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('gateway/show/' . $value->id) }}">Show</a>
 
                 <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('gateway/' . $value->id . '/edit') }}">Edit this Nerd</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('gateway/edit/' . $value->id . '/edit') }}">Edit</a>
 
             </td>
         </tr>
     @endforeach
+    
+    
     </tbody>
 </table>
-
+<a class="btn btn-small btn-success" href="{{ URL::to('gateway/create') }}">Add Gateway</a>
 </div>
 </body>
 </html>

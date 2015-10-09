@@ -33,7 +33,8 @@ Route::post('userinfo',array('uses'=>'UserController@updateuser'));
 Route::get('/changepwd',array('uses'=>'UserController@changePassword'));
 
 Route::get('/gateway/create',array('as'=>'show-gatewayform','uses'=>'GatewayController@create'));
-Route::get('/gateway',array('as'=>'show-gateway','uses'=>'GatewayController@index'));
+Route::get('/gateway',array('as'=>'show-gateways','uses'=>'GatewayController@index'));
+Route::get('/gateway/show/{id}',array('as'=>'show-gateway','uses'=>'GatewayController@show'));
 Route::post('/gateway/create',array('as'=>'store-gateway','uses'=>'GatewayController@store'));
 
 

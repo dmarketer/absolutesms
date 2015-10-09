@@ -89,7 +89,11 @@ class GatewayController extends \BaseController {
      * @return Response
      */
     public function show($id) {
-//
+        $gateway = HttpGatewayPush::where('http_gateway_push.id',$id)
+                                ->leftJoin('http_gateway_dlr','gateway_id','=','http_gateway_push.id')->get()->toArray();
+        
+        return View::make('gateway.show')
+                        ->with('gateway', $gateway[0]);
     }
 
     /**
